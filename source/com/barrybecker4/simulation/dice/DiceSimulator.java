@@ -19,13 +19,17 @@ import java.util.Arrays;
  */
 public class DiceSimulator extends DistributionSimulator {
 
-    private int numDice_ = 2;
-    private int numSides_ = 6;
+    private static final int DEFAULT_NUM_DICE = 2;
+	private static final int DEFAULT_NUM_SIDES = 6;
+    private int numDice_;
+    private int numSides_;
 
 
     public DiceSimulator() {
         super("Dice Histogram");
         AppContext.initialize("ENGLISH", Arrays.asList("com.barrybecker4.ui.message"), new Log());
+		numDice_ = DEFAULT_NUM_DICE;
+		numSides_ = DEFAULT_NUM_SIDES;
         initHistogram();
     }
 
