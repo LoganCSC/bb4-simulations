@@ -173,13 +173,13 @@ public class SnakeSimulator extends NewtonianSimulator {
     @Override
     public void doOptimization()  {
         Optimizer optimizer;
-        if (GUIUtil.hasBasicService())   // need to verify
+        if (GUIUtil.hasBasicService())
             optimizer = new Optimizer( this );
         else
-            optimizer = new Optimizer( this, FileUtil.getHomeDir() +"performance/snake/snake_optimization.txt" );
+            optimizer = new Optimizer( this, FileUtil.getHomeDir() + "performance/snake/snake_optimization.txt" );
 
         setPaused(false);
-        optimizer.doOptimization(  OptimizationStrategyType.GENETIC_SEARCH, INITIAL_PARAMS, 0.3);
+        optimizer.doOptimization(OptimizationStrategyType.GENETIC_SEARCH, INITIAL_PARAMS, 0.3);
     }
 
     @Override

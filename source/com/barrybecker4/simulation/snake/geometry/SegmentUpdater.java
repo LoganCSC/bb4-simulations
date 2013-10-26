@@ -10,7 +10,7 @@ import static com.barrybecker4.simulation.snake.geometry.Segment.NUM_PARTICLES;
 
 
 /**
- *  Updates a segment forward in time one timestep
+ *  Updates a segment forward in time one time step
  *
  *  @author Barry Becker
  */
@@ -21,9 +21,6 @@ public class SegmentUpdater {
     /** temporary vector to aid in calculations (saves creating a lot of new vector objects)  */
     private Vector2d vel_ = new Vector2d( 0, 0 );
     private Vector2d change_ = new Vector2d( 0, 0 );
-
-    /** constructor */
-    public SegmentUpdater() {}
 
 
     /**
