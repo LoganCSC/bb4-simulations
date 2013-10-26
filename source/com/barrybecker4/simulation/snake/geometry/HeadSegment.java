@@ -15,7 +15,7 @@ public class HeadSegment extends Segment {
      * @param width1 the width of the segment that is nearest the nose
      * @param width2 the width of the segment nearest the tail
      * @param xpos position of the center of the segment
-     * @param ypos position of the ceneter of the segment
+     * @param ypos position of the center of the segment
      */
     public HeadSegment(double width1, double width2, double length, double xpos, double ypos,
                        int segmentIndex, Snake snake) {
