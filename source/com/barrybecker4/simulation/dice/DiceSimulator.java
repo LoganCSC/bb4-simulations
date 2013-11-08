@@ -22,14 +22,14 @@ public class DiceSimulator extends DistributionSimulator {
     private static final int DEFAULT_NUM_DICE = 2;
 	private static final int DEFAULT_NUM_SIDES = 6;
     private int numDice_;
-    private int numSides_;
+    private int numberSides_;
 
 
     public DiceSimulator() {
         super("Dice Histogram");
         AppContext.initialize("ENGLISH", Arrays.asList("com.barrybecker4.ui.message"), new Log());
 		numDice_ = DEFAULT_NUM_DICE;
-		numSides_ = DEFAULT_NUM_SIDES;
+		numberSides_ = DEFAULT_NUM_SIDES;
         initHistogram();
     }
 
@@ -39,13 +39,13 @@ public class DiceSimulator extends DistributionSimulator {
     }
 
     public void setNumSides(int numSides) {
-        numSides_ = numSides;
+        numberSides_ = numSides;
         initHistogram();
     }
 
     @Override
     protected void initHistogram() {
-        data_ = new int[numDice_ * (numSides_-1) + 1];
+        data_ = new int[numDice_ * (numberSides_ -1) + 1];
         histogram_ = new HistogramRenderer(data_, new LinearFunction(1.0, -numDice_));
         histogram_.setXFormatter(new IntegerFormatter());
     }
@@ -59,7 +59,7 @@ public class DiceSimulator extends DistributionSimulator {
     protected double getXPositionToIncrement() {
         int total = 0;
         for (int i=0; i < numDice_; i++) {
-           total += random_.nextInt(numSides_) + 1;
+           total += random_.nextInt(numberSides_) + 1;
         }
         return total;
     }
