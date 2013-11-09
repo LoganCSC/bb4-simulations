@@ -7,3 +7,4 @@ build/
 bin/
 *.iml
 *.class
+gradle-app.setting
