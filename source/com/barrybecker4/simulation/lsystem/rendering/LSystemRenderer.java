@@ -93,7 +93,7 @@ public class LSystemRenderer {
 	 */
 	private void drawTree(OrientedPosition pos, double length, TreeNode tree, int numIterations, int depth) {
 
-        List<TreeNode> list = new LinkedList<TreeNode>(tree.children);
+        List<TreeNode> list = new LinkedList<>(tree.children);
 
         for (TreeNode child : list) {
             if (child.hasParens) {

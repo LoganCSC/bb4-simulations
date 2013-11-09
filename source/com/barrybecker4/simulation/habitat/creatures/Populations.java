@@ -37,7 +37,7 @@ public abstract class Populations extends ArrayList<Population> {
     }
 
     public void initialize() {
-        functionMap = new HashMap<Population, CountFunction>();
+        functionMap = new HashMap<>();
         grid = new HabitatGrid(20, 15);
 
         this.clear();
@@ -62,8 +62,8 @@ public abstract class Populations extends ArrayList<Population> {
 
     public MultipleFunctionRenderer createFunctionRenderer() {
 
-        List<Function> functions = new ArrayList<Function>();
-        List<Color> lineColors = new LinkedList<Color>();
+        List<Function> functions = new ArrayList<>();
+        List<Color> lineColors = new LinkedList<>();
 
         for (Population pop : this) {
             CountFunction func = new CountFunction(pop.getSize());

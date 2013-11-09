@@ -115,8 +115,8 @@ class DynamicOptions extends JPanel
 
     private void updateFormulaText() {
 
-        StringBuilder text = new StringBuilder();
-        formulaText_.setText(text.toString());
+        String text = "";
+        formulaText_.setText(text);
     }
 
     public void reset() {
@@ -139,17 +139,19 @@ class DynamicOptions extends JPanel
      */
     public void sliderChanged(int sliderIndex, String sliderName, double value) {
 
-        if (sliderName.equals(NUM_ITERATIONS_SLIDER)) {
-            algorithm_.setNumIterations((int)value);
-        }
-        else if (sliderName.equals(ANGLE_SLIDER)) {
-            algorithm_.setAngle(value);
-        }
-        else if (sliderName.equals(SCALE_SLIDER)) {
-            algorithm_.setScale(value);
-        }
-        else if (sliderName.equals(SCALE_FACTOR_SLIDER)) {
-            algorithm_.setScaleFactor(value);
+        switch (sliderName) {
+            case NUM_ITERATIONS_SLIDER:
+                algorithm_.setNumIterations((int) value);
+                break;
+            case ANGLE_SLIDER:
+                algorithm_.setAngle(value);
+                break;
+            case SCALE_SLIDER:
+                algorithm_.setScale(value);
+                break;
+            case SCALE_FACTOR_SLIDER:
+                algorithm_.setScaleFactor(value);
+                break;
         }
     }
 

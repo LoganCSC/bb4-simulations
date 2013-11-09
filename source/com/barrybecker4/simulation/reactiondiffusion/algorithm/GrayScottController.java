@@ -131,7 +131,7 @@ public final class GrayScottController {
     public void timeStep(final double dt) {
 
         int numThreads = parallelizer.getNumThreads();
-        List<Runnable> workers = new ArrayList<Runnable>(numThreads + 1);
+        List<Runnable> workers = new ArrayList<>(numThreads + 1);
         int range = model_.getWidth() / numThreads;
         RDProfiler prof = RDProfiler.getInstance();
 

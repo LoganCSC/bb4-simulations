@@ -224,7 +224,7 @@ public final class EnvironmentRenderer {
 
         Stroke wallStroke = new BasicStroke( wallLineWidth_ );
         g.setStroke( wallStroke );
-        int maxY = (int)getMaxY();
+        //int maxY = (int)getMaxY();
 
         g.setColor(WALL_COLOR);
         /*

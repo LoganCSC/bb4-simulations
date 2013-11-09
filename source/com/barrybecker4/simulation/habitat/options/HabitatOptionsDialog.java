@@ -3,10 +3,10 @@ package com.barrybecker4.simulation.habitat.options;
 
 import com.barrybecker4.simulation.common.ui.Simulator;
 import com.barrybecker4.simulation.common.ui.SimulatorOptionsDialog;
-import com.barrybecker4.simulation.habitat.HabitatSimulator;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import java.awt.Component;
 
 /**
  * @author Barry Becker
@@ -22,7 +22,7 @@ public class HabitatOptionsDialog extends SimulatorOptionsDialog {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        HabitatSimulator sim = (HabitatSimulator) getSimulator();
+        //HabitatSimulator sim = (HabitatSimulator) getSimulator();
 
         return panel;
     }

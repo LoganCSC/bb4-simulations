@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 class LiquidOptionsDialog extends SimulatorOptionsDialog {
 
     /** type of distribution function to test.   */
-    private JComboBox configurationChoiceField_;
+    private JComboBox<ConfigurationEnum> configurationChoiceField_;
     private JCheckBox showPressureCheckbox_;
     private JCheckBox showCellStatusCheckbox_;
 
@@ -87,12 +87,12 @@ class LiquidOptionsDialog extends SimulatorOptionsDialog {
         return customParamPanel;
     }
 
-    private JComboBox createConfigChoice() {
+    private JComboBox<ConfigurationEnum> createConfigChoice() {
 
-        JComboBox configurationChoice = new JComboBox();
+        JComboBox<ConfigurationEnum> configurationChoice = new JComboBox<>();
 
         configurationChoice.setModel(
-                new DefaultComboBoxModel(ConfigurationEnum.values()));
+                new DefaultComboBoxModel<>(ConfigurationEnum.values()));
         configurationChoice.setToolTipText(ConfigurationEnum.values()[0].getDescription());
         configurationChoice.addActionListener(this);
         configurationChoice.setSelectedItem(ConfigurationEnum.getDefaultValue());

@@ -21,7 +21,7 @@ public class Cell {
     public Cell(int xIndex, int yIndex)  {
         this.xIndex = xIndex;
         this.yIndex = yIndex;
-        creatures = new ArrayList<Creature>();
+        creatures = new ArrayList<>();
     }
 
     public void addCreature(Creature c) {

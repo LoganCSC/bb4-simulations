@@ -172,7 +172,7 @@ public class Creature  {
     /**
      * Flock with nbrs
      * Move toward the center of mass of neighbors and turn in same direction as nearest friend.
-     * @param friends
+     * @param friends nearby friendly creatures.
      */
     private void flock(List<Creature> friends, Creature nearestFriend) {
         if (nearestFriend == null)

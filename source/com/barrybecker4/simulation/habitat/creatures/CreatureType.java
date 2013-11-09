@@ -40,8 +40,8 @@ public enum CreatureType {
 
     private int nutritionalValue;
 
-    private static final Map<CreatureType, List<CreatureType>> predatorMap_ = new HashMap<CreatureType, List<CreatureType>>();
-    private static final Map<CreatureType, List<CreatureType>> preyMap_ = new HashMap<CreatureType, List<CreatureType>>();
+    private static final Map<CreatureType, List<CreatureType>> predatorMap_ = new HashMap<>();
+    private static final Map<CreatureType, List<CreatureType>> preyMap_ = new HashMap<>();
 
 
     static {
@@ -53,7 +53,7 @@ public enum CreatureType {
         predatorMap_.put(LION, Collections.<CreatureType>emptyList());
 
         for (CreatureType creature : values()) {
-            List<CreatureType> preys = new ArrayList<CreatureType>();
+            List<CreatureType> preys = new ArrayList<>();
 
             for (CreatureType potentialprey : values()) {
                 List<CreatureType> preds = predatorMap_.get(potentialprey);

@@ -86,14 +86,16 @@ class LiquidDynamicOptions extends JPanel
      */
     public void sliderChanged(int sliderIndex, String sliderName, double value) {
 
-        if (sliderName.equals(VISCOSITY_SLIDER)) {
-            liquidSim_.getEnvironment().setViscosity(value);
-        }
-        else if (sliderName.equals(B0_SLIDER)) {
-            liquidSim_.getEnvironment().setB0(value);
-        }
-        else if (sliderName.equals(TIMESTEP_SLIDER)) {
-            liquidSim_.setTimeStep(value);
+        switch (sliderName) {
+            case VISCOSITY_SLIDER:
+                liquidSim_.getEnvironment().setViscosity(value);
+                break;
+            case B0_SLIDER:
+                liquidSim_.getEnvironment().setB0(value);
+                break;
+            case TIMESTEP_SLIDER:
+                liquidSim_.setTimeStep(value);
+                break;
         }
     }
 

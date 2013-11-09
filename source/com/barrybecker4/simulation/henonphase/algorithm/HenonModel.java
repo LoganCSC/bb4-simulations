@@ -43,7 +43,7 @@ public class HenonModel  {
         this.connectPoints = connectPoints;
         this.cmap_ = cmap;
 
-        travelers = new ArrayList<Traveler>(this.numTravelors);
+        travelers = new ArrayList<>(this.numTravelors);
         offlineGraphics_ = new OfflineGraphics(new Dimension(width, height), Color.BLACK);
     }
 

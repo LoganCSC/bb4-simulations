@@ -81,32 +81,34 @@ class SnakeDynamicOptions extends JPanel
 
         LocomotionParameters params = snakeSim_.getLocomotionParams();
 
-        if (sliderName.equals(DIRECTION_SLIDER)) {
-            params.setDirection(value);
-        }
-        else if (sliderName.equals(WAVE_SPEED_SLIDER)) {
-            params.setWaveSpeed(value);
-        }
-        else if (sliderName.equals(WAVE_AMPLITUDE_SLIDER)) {
-            params.setWaveAmplitude(value);
-        }
-        else if (sliderName.equals(WAVE_PERIOD_SLIDER)) {
-            params.setWavePeriod(value);
-        }
-        else if (sliderName.equals(MASS_SCALE_SLIDER)) {
-            params.setMassScale(value);
-        }
-        else if (sliderName.equals(SPRING_CONST_SLIDER)) {
-            params.setSpringK(value);
-        }
-        else if (sliderName.equals(SPRING_DAMPING_SLIDER)) {
-            params.setSpringDamping(value);
-        }
-        else if (sliderName.equals(SCALE_SLIDER)) {
-            snakeSim_.setScale(value);
-        }
-        else if (sliderName.equals(TIMESTEP_SLIDER)) {
-            snakeSim_.setTimeStep(value);
+        switch (sliderName) {
+            case DIRECTION_SLIDER:
+                params.setDirection(value);
+                break;
+            case WAVE_SPEED_SLIDER:
+                params.setWaveSpeed(value);
+                break;
+            case WAVE_AMPLITUDE_SLIDER:
+                params.setWaveAmplitude(value);
+                break;
+            case WAVE_PERIOD_SLIDER:
+                params.setWavePeriod(value);
+                break;
+            case MASS_SCALE_SLIDER:
+                params.setMassScale(value);
+                break;
+            case SPRING_CONST_SLIDER:
+                params.setSpringK(value);
+                break;
+            case SPRING_DAMPING_SLIDER:
+                params.setSpringDamping(value);
+                break;
+            case SCALE_SLIDER:
+                snakeSim_.setScale(value);
+                break;
+            case TIMESTEP_SLIDER:
+                snakeSim_.setTimeStep(value);
+                break;
         }
     }
 }

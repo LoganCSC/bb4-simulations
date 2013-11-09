@@ -27,7 +27,7 @@ class DynamicOptions extends JPanel
     private JCheckBox useRunLengthOptimization_;
     private JButton backButton_;
 
-    private static final String ITER_SLIDER = "Max Iterations";;
+    private static final String ITER_SLIDER = "Max Iterations";
     private static final String TIMESTEP_SLIDER = "Num Rows per Frame";
 
     private SliderGroup sliderGroup_;

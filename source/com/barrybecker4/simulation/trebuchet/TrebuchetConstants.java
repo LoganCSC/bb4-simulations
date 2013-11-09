@@ -6,7 +6,7 @@ package com.barrybecker4.simulation.trebuchet;
  */
 public final class TrebuchetConstants {
 
-    private TrebuchetConstants() {};
+    private TrebuchetConstants() {}
 
     // scales the size of the trebuchet's geometry
     public static final double SCALE = 1.0;

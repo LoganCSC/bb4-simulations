@@ -35,7 +35,7 @@ public class LExpressionParser extends ExpressionParser {
     protected List<TreeNode> getNodesAtLevel(String exp) {
 
         int pos = 0;
-        List<TreeNode> nodes = new ArrayList<TreeNode>();
+        List<TreeNode> nodes = new ArrayList<>();
         String token = "";
         char ch = exp.charAt(pos);
 

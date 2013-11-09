@@ -18,7 +18,7 @@ public class History {
 
 
     public History() {
-        stack = new LinkedList<ComplexNumberRange>();
+        stack = new LinkedList<>();
     }
 
 

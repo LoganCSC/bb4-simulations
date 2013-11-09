@@ -48,7 +48,7 @@ public class PredPreySimulator extends Simulator {
     }
 
     public List<Population> getCreatures() {
-        List<Population> creatures = new ArrayList<Population>();
+        List<Population> creatures = new ArrayList<>();
         creatures.add(foxes);
         creatures.add(rabbits);
         return creatures;
@@ -94,12 +94,12 @@ public class PredPreySimulator extends Simulator {
         rabbitFunction = new CountFunction(Rabbits.INITIAL_NUM_RABBITS);
         foxFunction = new CountFunction(Foxes.INITIAL_NUM_FOXES);
 
-        List<Function> functions = new LinkedList<Function>();
+        List<Function> functions = new LinkedList<>();
         functions.add(rabbitFunction);
         functions.add(foxFunction);
         //functions.add(lionFunction);
 
-        List<Color> lineColors = new LinkedList<Color>();
+        List<Color> lineColors = new LinkedList<>();
         lineColors.add(Rabbits.COLOR);
         lineColors.add(Foxes.COLOR);
         //lineColors.add(Lions.COLOR);

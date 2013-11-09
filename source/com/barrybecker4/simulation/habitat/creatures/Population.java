@@ -25,7 +25,7 @@ public class Population {
 
     public Population(CreatureType type) {
         this.type = type;
-        creatures = new ArrayList<Creature>();
+        creatures = new ArrayList<>();
     }
 
     /**
@@ -50,32 +50,29 @@ public class Population {
      * get a defensive copy.
      */
     public List<Creature> getCreatures() {
-        return new ArrayList<Creature>(creatures);
+        return new ArrayList<>(creatures);
     }
 
     /**
      * Increment to the next day.
      * Move the creatures around and see if they are close to something to eat.
      * Have children of gestation period is complete and they have spawned.
-     * @param grid
+     * @param grid the habitat grid which contains all the wildlife.
      */
     public void nextDay(HabitatGrid grid) {
 
-        List<Point2d> spawnLocations = new ArrayList<Point2d>();
-        Iterator<Creature> creatureIt = creatures.iterator();
+        List<Point2d> spawnLocations = new ArrayList<>();
 
         // Figure out if anything edible nearby.
         // Eat prey if there are things that we eat nearby.
 
-        while (creatureIt.hasNext())   {
-            Creature creature = creatureIt.next();
-
+        for (Creature creature : creatures) {
             boolean spawn = creature.nextDay(grid);
 
             if (spawn) {
                 Point2d loc = creature.getLocation();
                 spawnLocations.add(new Point2d(absMod(loc.x + SPAWN_RADIUS * MathUtil.RANDOM.nextDouble()),
-                                               absMod(loc.y + SPAWN_RADIUS * MathUtil.RANDOM.nextDouble())));
+                        absMod(loc.y + SPAWN_RADIUS * MathUtil.RANDOM.nextDouble())));
             }
         }
 

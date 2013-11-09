@@ -37,7 +37,7 @@ public class VerhulstSimulator extends Simulator {
     }
 
     public List<Population> getCreatures() {
-        List<Population> creatures = new ArrayList<Population>();
+        List<Population> creatures = new ArrayList<>();
         creatures.add(rabbits);
         return creatures;
     }
@@ -74,10 +74,10 @@ public class VerhulstSimulator extends Simulator {
         rabbitFunction = new CountFunction(Rabbits.INITIAL_NUM_RABBITS);
         rabbitFunction.setMaxXValues(200);
 
-        List<Function> functions = new LinkedList<Function>();
+        List<Function> functions = new LinkedList<>();
         functions.add(rabbitFunction);
 
-        List<Color> lineColors = new LinkedList<Color>();
+        List<Color> lineColors = new LinkedList<>();
         lineColors.add(Rabbits.COLOR);
 
         graph_ = new MultipleFunctionRenderer(functions, lineColors);

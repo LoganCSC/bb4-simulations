@@ -42,7 +42,7 @@ public abstract class RDRenderer {
         int width = model_.getWidth();
 
         int numProcs = options_.getParallelizer().getNumThreads();
-        List<Runnable> workers = new ArrayList<Runnable>(numProcs);
+        List<Runnable> workers = new ArrayList<>(numProcs);
         int range = (width / numProcs);
         for (int i = 0; i < (numProcs - 1); i++) {
             int offset = i * range;

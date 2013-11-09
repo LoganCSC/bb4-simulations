@@ -38,7 +38,7 @@ public class HabitatGrid {
     }
 
     public List<Cell> getNeighborCells(Cell cell) {
-        List<Cell> nbrCells = new ArrayList<Cell>(8);
+        List<Cell> nbrCells = new ArrayList<>(8);
 
         int xm1 = getSafeX(cell.xIndex - 1);
         int xp1 = getSafeX(cell.xIndex + 1);

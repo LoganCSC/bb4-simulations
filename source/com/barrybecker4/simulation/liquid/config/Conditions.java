@@ -92,11 +92,11 @@ public class Conditions {
      *      ...
      *  </walls>
      * </pre>
-     * @param wallsNode
+     * @param wallsNode a walls xml element to be parsed. It contains a list of wall nodes.
      */
     private void parseWalls(Node wallsNode) {
 
-        walls_ = new ArrayList<Wall>();
+        walls_ = new ArrayList<>();
 
         NodeList children = wallsNode.getChildNodes();
         int num = children.getLength();
@@ -120,9 +120,9 @@ public class Conditions {
      */
     private void parseLiquidRegions(Node wallsNode) {
 
-        sources_ = new ArrayList<Source>();
-        sinks_ = new ArrayList<Region>();
-        initialLiquidRegions_ = new ArrayList<Region>();
+        sources_ = new ArrayList<>();
+        sinks_ = new ArrayList<>();
+        initialLiquidRegions_ = new ArrayList<>();
 
         NodeList children = wallsNode.getChildNodes();
         int num = children.getLength();
@@ -133,17 +133,19 @@ public class Conditions {
             Node n = children.item(i);
             String name = n.getNodeName();
 
-            if ("source".equals(name)) {
-                Source source = parseSource(n);
-                sources_.add(source);
-            }
-            else if ("sink".equals(name)) {
-                Region sink = parseRegion(n);
-                sinks_.add(sink);
-            }
-            else if ("region".equals(name)) {
-                Region region = parseRegion(n);
-                initialLiquidRegions_.add(region);
+            switch (name) {
+                case "source":
+                    Source source = parseSource(n);
+                    sources_.add(source);
+                    break;
+                case "sink":
+                    Region sink = parseRegion(n);
+                    sinks_.add(sink);
+                    break;
+                case "region":
+                    Region region = parseRegion(n);
+                    initialLiquidRegions_.add(region);
+                    break;
             }
         }
     }

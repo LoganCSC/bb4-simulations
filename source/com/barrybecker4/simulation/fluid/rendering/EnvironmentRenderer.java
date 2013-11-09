@@ -80,7 +80,7 @@ public final class EnvironmentRenderer {
         modelImage.setUseLinearInterpolation(options.getUseLinearInterpolation());
 
         int numProcs = options.getParallelizer().getNumThreads();
-        List<Runnable> workers = new ArrayList<Runnable>(numProcs);
+        List<Runnable> workers = new ArrayList<>(numProcs);
         int range = (height / numProcs);
         for (int i = 0; i < (numProcs - 1); i++) {
             int offset = i * range;

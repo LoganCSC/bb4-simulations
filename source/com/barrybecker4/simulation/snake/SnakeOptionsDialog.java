@@ -21,10 +21,10 @@ class SnakeOptionsDialog extends NewtonianSimOptionsDialog
                          implements ActionListener {
 
     /** type of snake to show.   */
-    private JComboBox snakeCombo_;
+    private JComboBox<SnakeType> snakeCombo_;
 
     /** type of snake to show.   */
-    private JComboBox waveTypeCombo_;
+    private JComboBox<WaveType> waveTypeCombo_;
 
     // snake numeric param options controls
     private NumberInput waveSpeedField_;
@@ -51,12 +51,12 @@ class SnakeOptionsDialog extends NewtonianSimOptionsDialog
         snakeParamPanel.setBorder(
                 BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder(), "Snake Parameters" ) );
 
-        ComboBoxModel snakeModel = new DefaultComboBoxModel(SnakeType.values());
-        snakeCombo_ = new JComboBox(snakeModel);
+        ComboBoxModel<SnakeType> snakeModel = new DefaultComboBoxModel<>(SnakeType.values());
+        snakeCombo_ = new JComboBox<>(snakeModel);
         snakeCombo_.setToolTipText("Select a type of snake to show.");
 
-        ComboBoxModel waveModel = new DefaultComboBoxModel(WaveType.values());
-        waveTypeCombo_ = new JComboBox(waveModel);
+        ComboBoxModel<WaveType> waveModel = new DefaultComboBoxModel<>(WaveType.values());
+        waveTypeCombo_ = new JComboBox<>(waveModel);
         waveTypeCombo_.setToolTipText("Select a type of wave form to use for muscle contractions.");
 
         LocomotionParameters params = ((SnakeSimulator) getSimulator()).getLocomotionParams();

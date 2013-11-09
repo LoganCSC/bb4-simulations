@@ -28,7 +28,7 @@ public class DynamicOptions extends JPanel
         setBorder(BorderFactory.createEtchedBorder());
         setPreferredSize(new Dimension(300, 300));
 
-        sliderGroups_ = new ArrayList<CreatureSliderGroup>();
+        sliderGroups_ = new ArrayList<>();
         for (Population creaturePop : simulator.getCreatures()) {
             CreatureSliderGroup group = new CreatureSliderGroup(creaturePop);
             group.addSliderChangeListener(this);

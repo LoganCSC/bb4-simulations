@@ -129,7 +129,7 @@ public abstract class FractalAlgorithm {
         }
 
         int numProcs = parallelizer_.getNumThreads();
-        List<Runnable> workers = new ArrayList<Runnable>(numProcs);
+        List<Runnable> workers = new ArrayList<>(numProcs);
 
         // we calculate a little more each "timestep"
         int currentRow = model.getCurrentRow();
@@ -167,8 +167,8 @@ public abstract class FractalAlgorithm {
 
     /**
      * Converts from screen coordinates to data coordinates.
-     * @param x
-     * @param y
+     * @param x x axis coordinate
+     * @param y y axis coordinate
      * @return corresponding position in complex number plane represented by the model.
      */
     public ComplexNumber getComplexPosition(int x, int y) {

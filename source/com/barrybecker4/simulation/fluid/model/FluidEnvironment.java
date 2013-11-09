@@ -136,7 +136,7 @@ public class FluidEnvironment {
 
     /**
      * Diffuse the pressure.
-     * @param bound
+     * @param bound fluid environment boundary.
      * @param prop the cell property to diffuse
      * @param diff either diffusion rate or viscosity.
      */
