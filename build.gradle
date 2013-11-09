@@ -54,6 +54,12 @@ task runHenonPhaseExplorer(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
+task runHabitat(type: JavaExec) {
+    main = 'com.barrybecker4.simulation.common.ui.SimulatorApplet'
+    args = ["com.barrybecker4.simulation.habitat.HabitatSimulator"]
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 task runLSystemExplorer(type: JavaExec) {
     main = 'com.barrybecker4.simulation.common.ui.SimulatorApplet'
     args = ["com.barrybecker4.simulation.lsystem.LSystemExplorer"]
