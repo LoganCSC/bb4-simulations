@@ -1,7 +1,7 @@
 /** Copyright by Barry G. Becker, 2000-2011. Licensed under MIT License: http://www.opensource.org/licenses/MIT  */
 package com.barrybecker4.simulation.fractalexplorer.algorithm;
 
-import com.barrybecker4.common.concurrency.Parallelizer;
+import com.barrybecker4.common.concurrency.RunnableParallelizer;
 import com.barrybecker4.common.geometry.Box;
 import com.barrybecker4.common.geometry.IntLocation;
 import com.barrybecker4.common.math.ComplexNumber;
@@ -36,7 +36,7 @@ public abstract class FractalAlgorithm {
     private ComplexNumberRange range;
 
     /** Manages the worker threads. */
-    private Parallelizer<Worker> parallelizer_;
+    private RunnableParallelizer parallelizer_;
 
     private int maxIterations_ = DEFAULT_MAX_ITERATIONS;
 
@@ -65,11 +65,14 @@ public abstract class FractalAlgorithm {
      * Back up one step in the history
      */
     public void goBack() {
-        ComplexNumberRange newRange = history_.popLastRange();
-        if (range.equals(newRange)) {
-            newRange = history_.popLastRange();
+        if (history_.hasHistory()) {
+
+            ComplexNumberRange newRange = history_.popLastRange();
+            if (range.equals(newRange)) {
+                newRange = history_.popLastRange();
+            }
+            processRange(newRange);
         }
-        processRange(newRange);
     }
 
     private void processRange(ComplexNumberRange range) {
@@ -85,7 +88,7 @@ public abstract class FractalAlgorithm {
         if (parallelizer_ == null || parallelized != isParallelized()) {
 
             parallelizer_ =
-                 parallelized ? new Parallelizer<Worker>() : new Parallelizer<Worker>(1);
+                 parallelized ? new RunnableParallelizer() : new RunnableParallelizer(1);
             model.setCurrentRow(0);
         }
     }
@@ -129,7 +132,7 @@ public abstract class FractalAlgorithm {
         }
 
         int numProcs = parallelizer_.getNumThreads();
-        List<Runnable> workers = new ArrayList<Runnable>(numProcs);
+        List<Runnable> workers = new ArrayList<>(numProcs);
 
         // we calculate a little more each "timestep"
         int currentRow = model.getCurrentRow();
@@ -158,7 +161,6 @@ public abstract class FractalAlgorithm {
         return false;
     }
 
-
     /**
      * @return a number between 0 and 1.
      * Typically corresponds to the number times we had to iterate before the point escaped (or not).
@@ -167,8 +169,8 @@ public abstract class FractalAlgorithm {
 
     /**
      * Converts from screen coordinates to data coordinates.
-     * @param x
-     * @param y
+     * @param x real valued coordinate
+     * @param y pure imaginary coordinate
      * @return corresponding position in complex number plane represented by the model.
      */
     public ComplexNumber getComplexPosition(int x, int y) {
@@ -181,7 +183,7 @@ public abstract class FractalAlgorithm {
 
     public ComplexNumberRange getRange(Box box)  {
         ComplexNumber firstCorner = getComplexPosition(box.getTopLeftCorner());
-        ComplexNumber secondCorner =getComplexPosition(box.getBottomRightCorner());
+        ComplexNumber secondCorner = getComplexPosition(box.getBottomRightCorner());
         return new ComplexNumberRange(firstCorner, secondCorner);
     }
 

@@ -1,8 +1,7 @@
 /** Copyright by Barry G. Becker, 2000-2011. Licensed under MIT License: http://www.opensource.org/licenses/MIT  */
 package com.barrybecker4.simulation.stock;
 
-
-
+import com.barrybecker4.common.app.AppContext;
 import com.barrybecker4.common.format.CurrencyFormatter;
 import com.barrybecker4.common.math.function.InvertibleFunction;
 import com.barrybecker4.common.math.function.LinearFunction;
@@ -10,6 +9,9 @@ import com.barrybecker4.common.math.function.LogFunction;
 import com.barrybecker4.simulation.common.ui.DistributionSimulator;
 import com.barrybecker4.simulation.common.ui.SimulatorOptionsDialog;
 import com.barrybecker4.ui.renderers.HistogramRenderer;
+import com.barrybecker4.ui.util.Log;
+
+import java.util.Arrays;
 
 /**
  * Simulates the N stocks over M time periods (and other options).
@@ -19,6 +21,10 @@ import com.barrybecker4.ui.renderers.HistogramRenderer;
  */
 public class StockSimulator extends DistributionSimulator {
 
+    /**
+     * Sometime the numbers on the x axis can get very large. Scientific notation is used in those cases.
+     * If this is large, there will be fewer labels shown.
+     */
     private static final int LABEL_WIDTH = 70;
 
     private StockSampleOptions opts_ = new StockSampleOptions();
@@ -26,6 +32,7 @@ public class StockSimulator extends DistributionSimulator {
 
     public StockSimulator() {
         super("Stock Market Simulation");
+        AppContext.initialize("ENGLISH", Arrays.asList("com.barrybecker4.ui.message"), new Log());
         initHistogram();
     }
 

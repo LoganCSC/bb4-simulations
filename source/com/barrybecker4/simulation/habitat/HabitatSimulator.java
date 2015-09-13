@@ -1,16 +1,16 @@
-/** Copyright by Barry G. Becker, 2000-2011. Licensed under MIT License: http://www.opensource.org/licenses/MIT  */
+/** Copyright by Barry G. Becker, 2000-2015. Licensed under MIT License: http://www.opensource.org/licenses/MIT  */
 package com.barrybecker4.simulation.habitat;
 
 import com.barrybecker4.common.concurrency.ThreadUtil;
 import com.barrybecker4.common.math.MathUtil;
 import com.barrybecker4.simulation.common.ui.Simulator;
+import com.barrybecker4.simulation.common.ui.SimulatorApplet;
 import com.barrybecker4.simulation.common.ui.SimulatorOptionsDialog;
-import com.barrybecker4.simulation.graphing.GraphOptionsDialog;
 import com.barrybecker4.simulation.habitat.creatures.Populations;
 import com.barrybecker4.simulation.habitat.creatures.SerengetiPopulations;
 import com.barrybecker4.simulation.habitat.options.DynamicOptions;
-import com.barrybecker4.ui.animation.AnimationFrame;
-import com.barrybecker4.ui.renderers.MultipleFunctionRenderer;
+import com.barrybecker4.simulation.habitat.options.HabitatOptionsDialog;
+import com.barrybecker4.ui.util.GUIUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,13 +22,9 @@ import java.awt.*;
  */
 public class HabitatSimulator extends Simulator {
 
-    /** Number of times greater area to allocate to the hab compared to the graph. */
-    private static final int HABITAT_TO_GRAPH_RATIO = 3;
-
-    private HabitatRenderer habitatRenderer_;
-    private MultipleFunctionRenderer graphRenderer_;
     private Populations populations;
     private DynamicOptions options_;
+    private JSplitPane splitPane;
 
 
     /** Constructor */
@@ -37,7 +33,22 @@ public class HabitatSimulator extends Simulator {
         super("Habitat Simulation");
         setBackground(Color.WHITE);
         populations = new SerengetiPopulations();
-        initialize();
+
+        PopulationGraphPanel graphPanel = new PopulationGraphPanel(populations);
+        HabitatPanel habitatPanel = new HabitatPanel(populations);
+
+        splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
+                           habitatPanel, graphPanel);
+
+
+        //Provide minimum sizes for the two components in the split pane
+        Dimension minimumSize = new Dimension(100, 50);
+        habitatPanel.setMinimumSize(minimumSize);
+        graphPanel.setMinimumSize(minimumSize);
+
+        splitPane.setDividerLocation(350);
+
+        this.add(splitPane);
     }
 
     @Override
@@ -47,8 +58,7 @@ public class HabitatSimulator extends Simulator {
         // wait till actually paused. Not clean, but oh well.
         ThreadUtil.sleep(500);
         MathUtil.RANDOM.setSeed(1);
-        populations.initialize();
-        initialize();
+        populations.reset();
         options_.reset();
         this.setPaused(false);
     }
@@ -63,13 +73,7 @@ public class HabitatSimulator extends Simulator {
 
         options_.update();
         populations.nextDay();
-
         return timeStep_;
-    }
-
-    protected void initialize() {
-        habitatRenderer_ = new HabitatRenderer(populations);
-        graphRenderer_ = populations.createFunctionRenderer();
     }
 
     public Populations getPopulations() {
@@ -78,18 +82,12 @@ public class HabitatSimulator extends Simulator {
 
     /**
      * Draw the population graph under the hab.
-     * @param g
+     * @param g java graphics context
      */
     @Override
     public void paint( Graphics g ) {
-
-        int denom = HABITAT_TO_GRAPH_RATIO + 1;
-        habitatRenderer_.setSize(getWidth(), HABITAT_TO_GRAPH_RATIO * getHeight()/denom);
-        habitatRenderer_.paint(g);
-
-        graphRenderer_.setPosition(0, HABITAT_TO_GRAPH_RATIO * getHeight()/denom);
-        graphRenderer_.setSize(getWidth(), getHeight()/denom);
-        graphRenderer_.paint(g);
+        splitPane.setSize(getSize());
+        splitPane.paint(g);
     }
 
     @Override
@@ -100,13 +98,13 @@ public class HabitatSimulator extends Simulator {
 
     @Override
     protected SimulatorOptionsDialog createOptionsDialog() {
-         return new GraphOptionsDialog( frame_, this );
+         return new HabitatOptionsDialog(frame_, this);
     }
 
     public static void main( String[] args ) {
         final HabitatSimulator sim = new HabitatSimulator();
 
         sim.setPaused(true);
-        new AnimationFrame( sim );
+        GUIUtil.showApplet(new SimulatorApplet(sim));
     }
 }

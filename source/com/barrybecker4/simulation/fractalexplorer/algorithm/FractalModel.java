@@ -34,11 +34,10 @@ public class FractalModel implements RectangularModel {
         values = new double[width][height];
         currentRow = 0;
         lastRow = 0;
-        System.out.println("creating image with dims width="+ width +" ht=" + height);
     }
 
     public void setValue(int x, int y, double value) {
-        if (x<getWidth() && y<getHeight())
+        if (x < getWidth() && y < getHeight())
             values[x][y] = value;
     }
 
